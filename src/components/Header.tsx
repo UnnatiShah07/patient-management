@@ -17,10 +17,10 @@ export const Header: FC = () => {
         <Link className="link" to="/ward">
           Ward
         </Link>
-        <a href="" target="_blank" rel="noreferrer" className="code-link">
+        {/* <a href="" target="_blank" rel="noreferrer" className="code-link">
           <RxCodesandboxLogo />
-        </a>
-        <a href="" target="_blank" rel="noreferrer" className="code-link">
+        </a> */}
+        <a href="https://replit.com/@UnnatiShah07/Assignment-21-PatientManagement" target="_blank" rel="noreferrer" className="code-link">
           <SiReplit />
         </a>
       </div>

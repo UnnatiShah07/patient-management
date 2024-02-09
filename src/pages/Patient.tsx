@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { RootState, addPatient, removePatient, updatePatient, useAppDispatch } from "../redux";
 import { useNavigate } from "react-router-dom";
+import { formatDate } from "../utils";
 
 export const Patients: FC = () => {
   const [updateId, setUpdateId] = useState<string>("");
@@ -28,11 +29,11 @@ export const Patients: FC = () => {
     phoneNumber: { required: "Phone number is required." },
     assignedWard: { required: "Assign ward is required." },
     admitDate: { required: "Admit date is required." },
-    dischargeDate: { required: "Discharge date is required." },
+    dischargeDate: {},
   };
 
   const handleAddPatient = (values: any) => {
-    const { name, age, gender, medicalHistory, email, phoneNumber, assignedWard } = values;
+    const { name, age, gender, medicalHistory, email, phoneNumber, assignedWard, admitDate, dischargeDate } = values;
     const patient = {
       name,
       age,
@@ -40,11 +41,23 @@ export const Patients: FC = () => {
       medicalHistory,
       contactInformation: { email, phoneNumber },
       assignedWard,
+      admitDate,
+      dischargeDate
     };
     dispatch(addPatient(patient))
       .unwrap()
       .then(() => {
-        reset();
+        reset({
+          name: "",
+          age: "",
+          gender: "",
+          medicalHistory: "",
+          email: "",
+          phoneNumber: "",
+          assignedWard: "",
+          admitDate: "",
+          dischargeDate: ""
+        });
       });
   };
 
@@ -57,6 +70,8 @@ export const Patients: FC = () => {
       medicalHistory,
       contactInformation: { email, phoneNumber },
       assignedWard,
+      admitDate,
+      dischargeDate
     } = patient;
     reset({
       name,
@@ -66,12 +81,14 @@ export const Patients: FC = () => {
       email,
       phoneNumber,
       assignedWard: assignedWard._id,
+      admitDate: formatDate(admitDate),
+      dischargeDate: dischargeDate ? formatDate(dischargeDate) : ""
     });
     _id && setUpdateId(_id);
   };
 
   const handleUpdatePatient = (values: any) => {
-    const { name, age, gender, medicalHistory, email, phoneNumber, assignedWard } = values;
+    const { name, age, gender, medicalHistory, email, phoneNumber, assignedWard, admitDate, dischargeDate } = values;
     const newPatient = {
       name,
       age,
@@ -79,6 +96,8 @@ export const Patients: FC = () => {
       medicalHistory,
       contactInformation: { email, phoneNumber },
       assignedWard,
+      admitDate,
+      dischargeDate
     };
     dispatch(updatePatient({ patientId: updateId, patient: newPatient }))
       .unwrap()
@@ -91,6 +110,8 @@ export const Patients: FC = () => {
           email: "",
           phoneNumber: "",
           assignedWard: "",
+          admitDate: "",
+          dischargeDate: ""
         });
         setUpdateId("");
       });
@@ -162,35 +183,39 @@ export const Patients: FC = () => {
             {errors.dischargeDate && <small>{errors.dischargeDate.message as ReactNode}</small>}
           </div>
           {updateId ? <button type="submit">Edit patient</button> : <button type="submit">Add patient</button>}
-          <button type="reset">Reset</button>
+          <button type="reset" onClick={() => setUpdateId("")}>Reset</button>
         </form>
       </div>
-      <div className="sub-container">
-        <h3>Patient List</h3>
-        <table border={1} cellPadding={10}>
-          <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Gender</th>
-          </tr>
-          {patients.map((patient) => (
+      {patients.length > 0 ? (
+        <div className="sub-container">
+          <h3>Patient List</h3>
+          <table border={1} cellPadding={10}>
             <tr>
-              <td>{patient.name}</td>
-              <td>{patient.age.toString()}</td>
-              <td>{patient.gender}</td>
-              <td>
-                <button onClick={() => handleViewStudent(patient._id)}>View</button>
-              </td>
-              <td>
-                <button onClick={() => handleEditPatient(patient)}>Edit</button>
-              </td>
-              <td>
-                <button onClick={() => handleDeletePatient(patient._id)}>Delete</button>
-              </td>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Gender</th>
             </tr>
-          ))}
-        </table>
-      </div>
+            {patients.map((patient) => (
+              <tr>
+                <td>{patient.name}</td>
+                <td>{patient.age.toString()}</td>
+                <td>{patient.gender}</td>
+                <td>
+                  <button onClick={() => handleViewStudent(patient._id)}>View</button>
+                </td>
+                <td>
+                  <button onClick={() => handleEditPatient(patient)}>Edit</button>
+                </td>
+                <td>
+                  <button onClick={() => handleDeletePatient(patient._id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </table>
+        </div>
+      ) : (
+        <h3>No Patient</h3>
+      )}
     </div>
   );
 };
