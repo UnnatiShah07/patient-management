@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Young+Serif&display=swap");
+
+:root {
+  --background-color: #f8f8f7;
+  --primary: #662d91;
+  --border-color: #d6d1d1;
+}
+
+body {
+  background-color: var(--background-color);
+  font-family: "Young Serif", serif;
+  margin: 0;
+}
+
+small {
+  color: rgb(243, 26, 26);
+}
+
+button {
+  background-color: var(--primary);
+  border: 0;
+  padding: 0.5em 1.5em;
+  border-radius: 0.2em;
+  color: white;
+  font-family: "Young Serif", serif;
+  cursor: pointer;
+}
+
+input,
+select {
+  border-radius: 0;
+  border: 1px solid var(--border-color);
+  padding: 0.4em 1em;
+  font-family: "Young Serif", serif;
+  border-radius: 0.2em;
+}
+
+textarea {
+  border-radius: 0;
+  border: 1px solid var(--border-color);
+  padding: 0.4em 1em;
+  font-family: "Young Serif", serif;
+  border-radius: 0.2em;
+  height: auto;
+  max-height: 200;
+}
+
+h5 {
+  margin: 0;
+}
+
+.loader {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: rgba(248, 248, 247, 0.3);
+}
+
+.loader img {
+  width: 7em;
+  height: 7em;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 4em);
+  gap: 2em;
+}
+
+.sub-container {
+  text-align: center;
+}
+
+.form {
+  background-color: rgba(216, 191, 216, 0.2);
+  padding: 1em;
+  border-radius: 0.5em;
+  display: grid;
+  gap: 1em;
+  text-align: left;
+  align-items: center;
+}
+
+@media (min-width: 600px) {
+  .form {
+    grid-template-columns: repeat(2, 18em);
+  }
+}
+
+@media (min-width: 900px) {
+  .form {
+    grid-template-columns: repeat(3, 18em);
+  }
+}
+
+.form .grid-element input {
+  width: 90%;
+}
+
+.form .grid-element select {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0em 1.5em;
+  height: 4em;
+  background-color: rgba(216, 191, 216, 0.2);
+}
+
+.header .links {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.header .link {
+  text-decoration: none;
+  color: var(--primary);
+}
+
+.header .code-link {
+  background-color: var(--primary);
+  width: 2em;
+  height: 2em;
+  border-radius: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--background-color);
+  cursor: pointer;
+}
+
+.details {
+  text-align: center;
+}
+
+.details span {
+  color: var(--primary);
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3em;
+  padding: 1em;
+}
+
+.patient-view, .ward-view {
+  width: 100vw;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.patient-view td{
+  text-align: center;
+}
