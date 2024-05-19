@@ -107,7 +107,7 @@ export const Wards: FC = () => {
             <th>Capacity</th>
             <th>Specializations</th>
           </tr>
-          {wards.map((ward) => (
+          {wards?.map((ward) => (
             <tr>
               <td>{ward?.wardNumber}</td>
               <td>{ward?.capacity.toString()}</td>

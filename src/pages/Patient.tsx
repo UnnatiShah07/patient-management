@@ -164,7 +164,7 @@ export const Patients: FC = () => {
           <div className="grid-element">
             <select {...register("assignedWard", validations.assignedWard)} name="assignedWard">
               <option value="">Select ward</option>
-              {wards.map((ward) => (
+              {wards?.map((ward) => (
                 <option key={ward._id} value={ward._id}>
                   {ward.wardNumber}
                 </option>
@@ -186,7 +186,7 @@ export const Patients: FC = () => {
           <button type="reset" onClick={() => setUpdateId("")}>Reset</button>
         </form>
       </div>
-      {patients.length > 0 ? (
+      {patients?.length > 0 ? (
         <div className="sub-container">
           <h3>Patient List</h3>
           <table border={1} cellPadding={10}>
@@ -195,7 +195,7 @@ export const Patients: FC = () => {
               <th>Age</th>
               <th>Gender</th>
             </tr>
-            {patients.map((patient) => (
+            {patients?.map((patient) => (
               <tr>
                 <td>{patient.name}</td>
                 <td>{patient.age.toString()}</td>

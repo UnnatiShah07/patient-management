@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import { SiReplit } from "react-icons/si";
-import { RxCodesandboxLogo } from "react-icons/rx";
+import { SiReplit, SiGithub } from "react-icons/si";
 
 export const Header: FC = () => {
   return (
@@ -17,9 +16,9 @@ export const Header: FC = () => {
         <Link className="link" to="/ward">
           Ward
         </Link>
-        {/* <a href="" target="_blank" rel="noreferrer" className="code-link">
-          <RxCodesandboxLogo />
-        </a> */}
+        <a href="https://github.com/UnnatiShah07/patient-management" target="_blank" rel="noreferrer" className="code-link">
+          <SiGithub />
+        </a>
         <a href="https://replit.com/@UnnatiShah07/Assignment-21-PatientManagement" target="_blank" rel="noreferrer" className="code-link">
           <SiReplit />
         </a>
